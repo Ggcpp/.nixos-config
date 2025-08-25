@@ -1,0 +1,5 @@
+local lspconfig = require("lspconfig")
+local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
+-- lspconfig.clangd.setup({ capabilities = lsp_capabilities })
+-- lspconfig.gopls.setup({ capabilities = lsp_capabilities })
+lspconfig.rust_analyzer.setup({ capabilities = lsp_capabilities })
