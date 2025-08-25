@@ -161,8 +161,12 @@
   # Set the default editor to nvim
   environment.variables.EDITOR = "nvim";
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  # Agree android_sdk license and tos
+  nixpkgs.config = {
+    android_sdk.accept_license = true;
+    allowUnfree = true;
+  };
+
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -181,6 +185,15 @@
     hyprpaper
     wofi
     unzip
+    tmux
+    htop
+    # androidenv.androidPkgs.emulator
+    (androidenv.emulateApp {
+      name = "emulate-MyAndroidApp";
+      platformVersion = "33";
+      abiVersion = "x86_64"; # armeabi-v7a, mips, x86_64
+      systemImageType = "google_apis_playstore";
+    })
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
