@@ -91,6 +91,13 @@
     };
   };
 
+  # Fonts
+  fonts.packages = with pkgs; [
+    noto-fonts
+    noto-fonts-cjk-sans
+    noto-fonts-emoji
+  ];
+
   # Enable sound with pipewire
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;

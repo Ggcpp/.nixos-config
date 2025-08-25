@@ -17,6 +17,7 @@
   };
 
   xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/nvim;
+  xdg.configFile."tmux".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/tmux;
 
   programs.neovim = {
     enable = true;
@@ -38,6 +39,10 @@
       wl-clipboard
       rust-analyzer
     ];
+  };
+
+  programs.tmux = {
+    enable = true;
   };
 
   # This value determines the Home Manager release that your
