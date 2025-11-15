@@ -38,6 +38,7 @@
     extraPackages = with pkgs; [
       wl-clipboard
       rust-analyzer
+      typescript-language-server
     ];
   };
 

@@ -140,13 +140,21 @@
 
   programs.fish.enable = true;
 
+  programs.steam = {
+    enable = true;
+    gamescopeSession.enable = true;
+  };
+
+  programs.gamemode.enable = true;
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.daremo = {
     isNormalUser = true;
     description = "daremo";
-    extraGroups = [ "networkmanager" "wheel" ];
+    # kvm is for hardware acceleration (see the android studio guide)
+    extraGroups = [ "networkmanager" "wheel" "kvm" ];
     shell = pkgs.fish;
     packages = with pkgs; [];
   };
@@ -187,13 +195,24 @@
     unzip
     tmux
     htop
+    blender
+    ncdu
+    lutris
+    wine
+    winetricks
+    feh
+    vlc
+    nodejs
+    anki-bin
+    android-studio
     # androidenv.androidPkgs.emulator
-    (androidenv.emulateApp {
-      name = "emulate-MyAndroidApp";
-      platformVersion = "33";
-      abiVersion = "x86_64"; # armeabi-v7a, mips, x86_64
-      systemImageType = "google_apis_playstore";
-    })
+    # (androidenv.emulateApp {
+    #   name = "emulate-MyAndroidApp";
+    #   platformVersion = "33";
+    #   abiVersion = "x86_64"; # armeabi-v7a, mips, x86_64
+    #   systemImageType = "google_apis_playstore";
+    # })
+    # (android-studio.withSdk (androidenv.composeAndroidPackages { includeNDK = true; }).androidsdk)
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
