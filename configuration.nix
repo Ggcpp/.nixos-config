@@ -125,6 +125,10 @@
     graphics.enable32Bit = true;
   };
 
+  # Apparently good for Android emulator
+  programs.adb.enable = true;
+  virtualisation.libvirtd.enable = true;
+
   hardware.nvidia = {
     modesetting.enable = true;
     powerManagement.enable = true;
@@ -153,8 +157,8 @@
   users.users.daremo = {
     isNormalUser = true;
     description = "daremo";
-    # kvm is for hardware acceleration (see the android studio guide)
-    extraGroups = [ "networkmanager" "wheel" "kvm" ];
+    # kvm and adbusers are for hardware acceleration (see the android studio guide)
+    extraGroups = [ "networkmanager" "wheel" "kvm" "adbusers" ];
     shell = pkgs.fish;
     packages = with pkgs; [];
   };
@@ -204,15 +208,6 @@
     vlc
     nodejs
     anki-bin
-    android-studio
-    # androidenv.androidPkgs.emulator
-    # (androidenv.emulateApp {
-    #   name = "emulate-MyAndroidApp";
-    #   platformVersion = "33";
-    #   abiVersion = "x86_64"; # armeabi-v7a, mips, x86_64
-    #   systemImageType = "google_apis_playstore";
-    # })
-    # (android-studio.withSdk (androidenv.composeAndroidPackages { includeNDK = true; }).androidsdk)
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

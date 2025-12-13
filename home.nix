@@ -18,6 +18,9 @@
 
   xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/nvim;
   xdg.configFile."tmux".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/tmux;
+  xdg.configFile."ghostty".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/ghostty;
+  xdg.configFile."hypr".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/hypr;
+  xdg.configFile."fish".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/fish;
 
   programs.neovim = {
     enable = true;

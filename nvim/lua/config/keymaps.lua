@@ -7,6 +7,9 @@ vim.g.mapleader = ' '
 keymap("n", "<C-d>", "<C-d>zz", opts)
 keymap("n", "<C-u>", "<C-u>zz", opts)
 
+-- nvim tree
+keymap("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", opts)
+
 -- split window
 keymap("n", "<leader>/", "<C-w>v", opts)
 keymap("n", "<leader>-", "<C-w>s", opts)
