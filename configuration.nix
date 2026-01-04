@@ -144,6 +144,8 @@
 
   programs.fish.enable = true;
 
+  programs.nix-ld.enable = true;
+
   programs.steam = {
     enable = true;
     gamescopeSession.enable = true;
@@ -210,6 +212,11 @@
     anki-bin
   ];
 
+  # KDE Plasma desktop environment
+  # services.displayManager.sddm.enable = true;
+  # services.displayManager.sddm.wayland.enable = true;
+  # services.desktopManager.plasma6.enable = true;
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -227,7 +234,7 @@
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
