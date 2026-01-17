@@ -19,6 +19,7 @@
       enable = true;
       device = "nodev";
       useOSProber = true;
+      #efiInstallAsRemovable = true;
       efiSupport = true;
     };
 
@@ -129,18 +130,18 @@
   programs.adb.enable = true;
   virtualisation.libvirtd.enable = true;
 
-  hardware.nvidia = {
-    modesetting.enable = true;
-    powerManagement.enable = true;
-    powerManagement.finegrained = false;
+  #hardware.nvidia = {
+  #  modesetting.enable = true;
+  #  powerManagement.enable = true;
+  #  powerManagement.finegrained = false;
 
-    open = true;
+  #  open = true;
 
-    nvidiaSettings = true;
+  #  nvidiaSettings = true;
 
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-  };
-  services.xserver.videoDrivers = [ "nvidia" ];
+  #  package = config.boot.kernelPackages.nvidiaPackages.stable;
+  #};
+  #services.xserver.videoDrivers = [ "nvidia" ];
 
   programs.fish.enable = true;
 
@@ -210,6 +211,7 @@
     vlc
     nodejs
     anki-bin
+    brightnessctl
   ];
 
   # KDE Plasma desktop environment
