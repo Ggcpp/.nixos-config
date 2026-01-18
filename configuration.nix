@@ -186,18 +186,21 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    chromium
     neovim
     wget
     git
     kitty
-    chromium
     keyd
     hyprsunset
+    hyprpaper
+    hyprcursor
+    waybar
     pavucontrol
     tree
     fh
     ghostty
-    hyprpaper
+    wezterm
     wofi
     unzip
     tmux
@@ -212,7 +215,18 @@
     nodejs
     anki-bin
     brightnessctl
+    apple-cursor
   ];
+
+  programs.chromium = {
+    enable = true;
+    extensions = [
+      "annfbnbieaamhaimclajlajpijgkdblo" # dark theme
+      "eimadpbcbfnmbkopoojfekhnkhdbieeh" # dark reader
+      "cfhdojbkjhnklbpkdaibdccddilifddb" # adblock plus
+      "khncfooichmfjbepaaaebmommgaepoid" # unhook
+    ];
+  };
 
   # KDE Plasma desktop environment
   # services.displayManager.sddm.enable = true;

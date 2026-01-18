@@ -1,7 +1,6 @@
 return {
   {
     "ray-x/lsp_signature.nvim",
-    enable = false
   },
   {
     "hrsh7th/cmp-nvim-lsp"

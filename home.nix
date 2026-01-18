@@ -21,6 +21,7 @@
   xdg.configFile."ghostty".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/ghostty;
   xdg.configFile."hypr".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/hypr;
   xdg.configFile."fish".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/fish;
+  xdg.configFile."waybar".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/waybar;
 
   programs.neovim = {
     enable = true;
@@ -40,8 +41,14 @@
 
     extraPackages = with pkgs; [
       wl-clipboard
+
+      # LSPs
       rust-analyzer
       typescript-language-server
+
+      # required by treesitter.nvim
+      tree-sitter
+      gcc
     ];
   };
 
