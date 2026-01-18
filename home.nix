@@ -35,6 +35,8 @@
     #   }
     # ];
 
+    # Maybe I don't need to add lazy-nvim through home manager and install it
+    # normally, so the nvim configs would be more cross-platform
     plugins = with pkgs.vimPlugins; [
       lazy-nvim
     ];
