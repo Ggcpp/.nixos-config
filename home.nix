@@ -20,7 +20,7 @@
     enable = true;
     extraConfig = ''
       # Default shell
-      set -g default-shell "${pkgs.zsh}/bin/fish"
+      set -g default-shell "${pkgs.fish}/bin/fish"
 
       # Prefix
       unbind C-b
@@ -32,6 +32,10 @@
       
       # Enable mouse support (scrolling)
       setw -g mouse on
+
+      # Vi based keys
+      set -g status-keys vi
+      set -g mode-keys   vi
       
       # Split window
       unbind v
@@ -136,7 +140,6 @@
   };
 
   xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/nvim;
-  #xdg.configFile."tmux".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/tmux;
   xdg.configFile."ghostty".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/ghostty;
   xdg.configFile."hypr".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/hypr;
   xdg.configFile."fish".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/fish;
