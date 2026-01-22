@@ -223,6 +223,7 @@
     starship
     zsh
     foot
+    quickshell
   ];
 
   programs.chromium = {

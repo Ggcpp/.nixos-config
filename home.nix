@@ -145,6 +145,7 @@
   xdg.configFile."fish".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/fish;
   xdg.configFile."waybar".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/waybar;
   xdg.configFile."foot".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/foot;
+  xdg.configFile."quickshell".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/quickshell;
 
   programs.neovim = {
     enable = true;
