@@ -74,24 +74,24 @@
         "format": "{volume}% {icon}",
         "format-bluetooth": "{icon} {volume}%",
         "format-icons": {
-            "headphone": "",
+            "headphone": " ",
             "hands-free": "",
             "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
+            "phone": " ",
+            "portable": " ",
+            "car": " ",
+            "default": ["", " ", " "]
         }
     },
 
     "network": {
         "format": "{ifname}",
-        "format-wifi": "",
-        "format-ethernet": "󰊗",
-        "format-disconnected": "󰖪",
-        "tooltip-format": "{ifname} via {gwaddr} 󰊗",
-        "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
-        "tooltip-format-ethernet": "{ifname} ",
+        "format-wifi": " ",
+        "format-ethernet": "󰊗 ",
+        "format-disconnected": "󰖪 ",
+        "tooltip-format": "{ifname} via {gwaddr} 󰊗 ",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%)  ",
+        "tooltip-format-ethernet": "{ifname}  ",
         "tooltip-format-disconnected": "Disconnected",
         "max-length": 50
     },
@@ -103,7 +103,7 @@
             "critical": 15
         },
         "format": "{capacity}% {icon}",
-        "format-icons": ["", "", "", "", ""],
+        "format-icons": [" ", " ", " ", " ", " "],
         "max-length": 25
     }
 }

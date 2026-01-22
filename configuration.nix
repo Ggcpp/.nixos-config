@@ -170,6 +170,9 @@
 
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
+    useUserPackages = true;
+    useGlobalPkgs = true;
+    backupFileExtension = "backup";
     users = {
       "daremo" = import ./home.nix;
     };
@@ -205,7 +208,6 @@
     wezterm
     wofi
     unzip
-    tmux
     htop
     blender
     ncdu
@@ -218,6 +220,9 @@
     anki-bin
     brightnessctl
     apple-cursor
+    starship
+    zsh
+    foot
   ];
 
   programs.chromium = {
