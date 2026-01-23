@@ -11,8 +11,8 @@ keymap("n", "<C-u>", "<C-u>zz", opts)
 keymap("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", opts)
 
 -- split window
-keymap("n", "<leader>/", "<C-w>v", opts)
-keymap("n", "<leader>-", "<C-w>s", opts)
+keymap("n", "<leader>V", "<C-w>v", opts)
+keymap("n", "<leader>H", "<C-w>s", opts)
 
 -- splits navigation
 keymap("n", "<C-h>", "<C-w>h", opts)

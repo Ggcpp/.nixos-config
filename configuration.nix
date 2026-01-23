@@ -88,7 +88,8 @@
         l = tab
         
         # Should be outside of terminal
-        m = C-backspace'';
+        m = C-backspace
+    '';
     };
   };
 
@@ -147,6 +148,8 @@
 
   programs.fish.enable = true;
 
+  programs.zsh.enable = true;
+
   programs.nix-ld.enable = true;
 
   programs.steam = {
@@ -164,7 +167,7 @@
     description = "daremo";
     # kvm and adbusers are for hardware acceleration (see the android studio guide)
     extraGroups = [ "networkmanager" "wheel" "kvm" "adbusers" ];
-    shell = pkgs.fish;
+    shell = pkgs.zsh;
     packages = with pkgs; [];
   };
 
@@ -221,7 +224,6 @@
     brightnessctl
     apple-cursor
     starship
-    zsh
     foot
     quickshell
   ];

@@ -16,11 +16,38 @@
     };
   };
 
+  programs.zsh = {
+    enable = true;
+    dotDir = config.home.homeDirectory + "/.config/zsh";
+    enableCompletion = true;
+
+    shellAliases = {
+      vim = "nvim";
+      v = "nvim";
+    };
+
+    sessionVariables = {
+      EDITOR = "nvim";
+      VISUAL = "nvim";
+    };
+
+    history = {
+      saveNoDups = true;
+      save = 10000;
+      size = 10000;
+      share = true;
+    };
+
+    initContent = ''
+      bindkey '^H' backward-kill-word
+    '';
+  };
+
   programs.tmux = {
     enable = true;
     extraConfig = ''
       # Default shell
-      set -g default-shell "${pkgs.fish}/bin/fish"
+      set -g default-shell "${pkgs.zsh}/bin/zsh"
 
       # Prefix
       unbind C-b
@@ -38,13 +65,11 @@
       set -g mode-keys   vi
       
       # Split window
-      unbind v
-      unbind h
-      unbind %
-      unbind 'a'
+      unbind V
+      unbind H
       
-      bind / split-window -h -c "#{pane_current_path}"
-      bind - split-window -v -c "#{pane_current_path}"
+      bind V split-window -h -c "#{pane_current_path}"
+      bind H split-window -v -c "#{pane_current_path}"
       
       # Create/rename window
       unbind n
@@ -83,11 +108,23 @@
       unbind e
       unbind i
       unbind a
+      unbind -
+      unbind g
+      unbind o
+      unbind u
+      unbind .
+      unbind /
       
       bind y select-window -t 1
       bind e select-window -t 2
       bind i select-window -t 3
       bind a select-window -t 4
+      bind - select-window -t 5
+      bind g select-window -t 6
+      bind o select-window -t 7
+      bind u select-window -t 8
+      bind . select-window -t 9
+      bind / select-window -t 10
       
       # Panes navigation
       unbind j
@@ -122,9 +159,6 @@
       
       # Automatically renumber windows
       set -g renumber-windows on
-      
-      # C-backspace to C-w
-      bind-key -n  C-h send-keys C-w
       
       # Stylizing status bar
       set -g focus-events on
