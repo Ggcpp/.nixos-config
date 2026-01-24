@@ -8,7 +8,7 @@ keymap("n", "<C-d>", "<C-d>zz", opts)
 keymap("n", "<C-u>", "<C-u>zz", opts)
 
 -- nvim tree
-keymap("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", opts)
+keymap("n", "<leader>f", "<cmd>NvimTreeToggle<cr>", opts)
 
 -- split window
 keymap("n", "<leader>V", "<C-w>v", opts)
@@ -23,6 +23,19 @@ keymap("n", "<C-l>", "<C-w>l", opts)
 -- buffers navigation
 keymap("n", "<C-n>", "<cmd>bnext<cr>", opts)
 keymap("n", "<C-p>", "<cmd>bprevious<cr>", opts)
+keymap("n", "<leader>y", "<cmd>BufferGoto 1<cr>", opts)
+keymap("n", "<leader>e", "<cmd>BufferGoto 2<cr>", opts)
+keymap("n", "<leader>i", "<cmd>BufferGoto 3<cr>", opts)
+keymap("n", "<leader>a", "<cmd>BufferGoto 4<cr>", opts)
+keymap("n", "<leader>-", "<cmd>BufferGoto 5<cr>", opts)
+keymap("n", "<leader>g", "<cmd>BufferGoto 6<cr>", opts)
+keymap("n", "<leader>o", "<cmd>BufferGoto 7<cr>", opts)
+keymap("n", "<leader>u", "<cmd>BufferGoto 8<cr>", opts)
+keymap("n", "<leader>.", "<cmd>BufferGoto 9<cr>", opts)
+keymap("n", "<leader>/", "<cmd>BufferGoto 10<cr>", opts)
+keymap("n", "<leader>q", "<cmd>BufferClose<cr>", opts)
+keymap("n", "<leader>n", "<cmd>BufferMoveNext<cr>", opts)
+keymap("n", "<leader>p", "<cmd>BufferMovePrevious<cr>", opts)
 
 -- lsp go-to
 keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
