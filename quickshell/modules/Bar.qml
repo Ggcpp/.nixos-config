@@ -6,14 +6,13 @@ import Quickshell.Services.Pipewire
 import QtQuick
 import QtQuick.Layouts
 
-PanelWindow {
+Item {
     property var sink: Pipewire.defaultAudioSink
 
-    anchors.top: true
-    anchors.bottom: true
-    anchors.left: true
+    anchors.top: parent.top
+    anchors.bottom: parent.bottom
+    anchors.left: parent.left
     implicitWidth: 50
-    color: "#1a1b26"
 
     SystemClock {
         id: clock
