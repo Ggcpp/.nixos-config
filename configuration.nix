@@ -252,6 +252,7 @@
   # };
 
   # List services that you want to enable:
+  services.upower.enable = true; # for quickshell battery info
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
