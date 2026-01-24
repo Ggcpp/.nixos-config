@@ -4,90 +4,64 @@ import Quickshell.Hyprland
 import Quickshell.Services.UPower
 import Quickshell.Services.Pipewire
 import QtQuick
+import QtQuick.Effects
 import QtQuick.Layouts
+import "modules"
 
 PanelWindow {
-    property var sink: Pipewire.defaultAudioSink
+    id: win
 
     anchors.top: true
     anchors.bottom: true
     anchors.left: true
-    implicitWidth: 40
-    color: "#1a1b26"
-
-    SystemClock {
-        id: clock
-        precision: SystemClock.minutes
+    anchors.right: true
+    color: "transparent"
+    mask: Region {
+	x: 0
+	y: 0
+	width: win.width
+	height: win.height
+	intersection: Intersection.Xor
     }
 
-    PwObjectTracker {
-        objects: [sink]
-    }
+    Bar {}
 
-    ColumnLayout {
+    Item {
+	id: border
+
 	anchors.fill: parent
-	spacing: 0
 
-    Image {
-	anchors.horizontalCenter: parent.horizontalCenter
-        source: "logo/nixos.png"
-	sourceSize.width: 25
-	sourceSize.height: 25
-    }
+	Rectangle {
+	    anchors.fill: parent
+	    color: "#1a1b26"
+	    //color: "red"
 
-	Repeater {
-	    model: [ "一", "二", "三", "四", "五", "六", "七", "八", "九", "十"]
-
-	    Text {
-		property var ws: Hyprland.workspaces.values.find(w => w.id === index + 1)
-		property bool isActive: Hyprland.focusedWorkspace?.id === (index + 1)
-
-		anchors.horizontalCenter: parent.horizontalCenter
-		text: modelData
-		color: isActive ? "#0db9d7" : (ws ? "#7aa2f7" : "#444b6a")
-		font { pixelSize: 16; bold: true }
-
-		MouseArea {
-		    anchors.fill: parent
-		    onClicked: Hyprland.dispatch("workspace " + (index + 1))
-
-		    // Should be in Repeater or a wrapper of it but I can't make it work
-		    onWheel: wheel => {
-		        if (wheel.angleDelta.y > 0) {
-			    Hyprland.dispatch("workspace e-1")
-			} else {
-			    Hyprland.dispatch("workspace e+1")
-			}
-		    }
-		}
+	    layer.enabled: true
+	    layer.effect: MultiEffect {
+		maskSource: mask
+		maskEnabled: true
+		maskInverted: true
+		maskThresholdMin: 0.5
+		maskSpreadAtMin: 1
 	    }
 	}
 
-	Text {
-	    anchors.horizontalCenter: parent.horizontalCenter
-	    color: "#0db9d7"
-	    text: Qt.formatDateTime(clock.date, "hh")
-	}
-	Text {
-	    anchors.horizontalCenter: parent.horizontalCenter
-	    color: "#0db9d7"
-	    text: Qt.formatDateTime(clock.date, "mm")
-	}
+	Item {
+	    id: mask
 
-	Text {
-	    anchors.horizontalCenter: parent.horizontalCenter
-	    color: UPower.onBattery ? "#7aa2f7" : "#0db9d7"
-	    text: UPower.displayDevice.percentage * 100 + "%"
+	    anchors.fill: parent
+	    visible: false
+
+	    layer.enabled: true
+
+	    Rectangle {
+	        anchors.fill: parent
+		//anchors.margins: 5
+		anchors.leftMargin: 0
+		//radius: 20
+		topLeftRadius: 20
+		bottomLeftRadius: 20
+	    }
 	}
-
-	Text {
-	    property int volume: sink && sink.audio ? Math.round(sink.audio.volume * 100) : 0
-
-	    anchors.horizontalCenter: parent.horizontalCenter
-	    color: "#0db9d7"
-	    text: volume
-	}
-
-	Item { Layout.fillHeight: true }
     }
 }
