@@ -11,6 +11,7 @@ import "modules"
 PanelWindow {
     id: win
 
+    exclusionMode: ExclusionMode.Ignore
     anchors.top: true
     anchors.bottom: true
     anchors.left: true
@@ -24,8 +25,29 @@ PanelWindow {
 	intersection: Intersection.Xor
     }
 
-    Bar {}
+    // Exclusion zones
+    PanelWindow {
+	color: "transparent"
+	anchors.top: true
+	exclusiveZone: 10
+    }
+    PanelWindow {
+	color: "transparent"
+	anchors.right: true
+	exclusiveZone: 10
+    }
+    PanelWindow {
+	color: "transparent"
+	anchors.bottom: true
+	exclusiveZone: 10
+    }
 
+    // Vertical Bar
+    Bar {
+	id: bar
+    }
+
+    // Frame borders
     Item {
 	id: border
 
@@ -56,11 +78,11 @@ PanelWindow {
 
 	    Rectangle {
 	        anchors.fill: parent
-		//anchors.margins: 5
-		anchors.leftMargin: 0
-		//radius: 20
-		topLeftRadius: 20
-		bottomLeftRadius: 20
+		anchors.margins: 10
+		anchors.leftMargin: bar.implicitWidth
+		radius: 20
+		//topLeftRadius: 20
+		//bottomLeftRadius: 20
 	    }
 	}
     }
