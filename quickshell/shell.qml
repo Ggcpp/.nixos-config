@@ -7,24 +7,8 @@ import QtQuick
 import QtQuick.Layouts
 import "modules"
 
-PanelWindow {
-    id: win
-
-    exclusionMode: ExclusionMode.Ignore
-    anchors.top: true
-    anchors.bottom: true
-    anchors.left: true
-    anchors.right: true
-    color: "transparent"
-    mask: Region {
-	x: 0
-	y: 0
-	width: win.width
-	height: win.height
-	intersection: Intersection.Xor
-    }
-
-    // Exclusion zones
+ShellRoot {
+    // Exclusion zone windows
     PanelWindow {
         color: "transparent"
         anchors.top: true
@@ -45,14 +29,33 @@ PanelWindow {
         anchors.left: true
         exclusiveZone: bar.implicitWidth
     }
-
-    // Frame borders
-    FrameBorders {
-        bar: bar
-    }
-
-    // Vertical Bar
-    Bar {
-	id: bar
+    
+    // Overlay window
+    PanelWindow {
+        id: win
+    
+        exclusionMode: ExclusionMode.Ignore
+        anchors.top: true
+        anchors.bottom: true
+        anchors.left: true
+        anchors.right: true
+        color: "transparent"
+        mask: Region {
+    	x: 0
+    	y: 0
+    	width: win.width
+    	height: win.height
+    	intersection: Intersection.Xor
+        }
+    
+        // Frame borders
+        FrameBorders {
+            bar: bar
+        }
+    
+        // Vertical Bar
+        Bar {
+    	    id: bar
+        }
     }
 }
