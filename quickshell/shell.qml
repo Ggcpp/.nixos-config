@@ -8,6 +8,15 @@ import QtQuick.Layouts
 import "modules"
 
 ShellRoot {
+    // Shortcuts
+    GlobalShortcut {
+        appid: "qsnix"
+	name: "launcher"
+	description: "Toggle the launcher"
+	//onPressed: ...
+	//onReleased: ...
+    }
+
     // Exclusion zone windows
     PanelWindow {
         color: "transparent"

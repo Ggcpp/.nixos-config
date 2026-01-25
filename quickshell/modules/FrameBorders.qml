@@ -12,6 +12,7 @@ Item {
     Rectangle {
         anchors.fill: parent
         color: "#1a1b26"
+	//color: "#36454F"
 
         layer.enabled: true
         layer.effect: MultiEffect {
