@@ -2,29 +2,65 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      inputs.home-manager.nixosModules.default
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    inputs.home-manager.nixosModules.default
+  ];
 
   # Bootloader.
-  boot.loader = {
-    systemd-boot.enable = false;
-
-    grub = {
+  boot = {
+    plymouth = {
       enable = true;
-      device = "nodev";
-      useOSProber = true;
-      #efiInstallAsRemovable = true;
-      efiSupport = true;
+      theme = "hexagon_hud";
+      themePackages = with pkgs; [
+        (adi1090x-plymouth-themes.override {
+          selected_themes = [ "hexagon_hud" ];
+        })
+      ];
+    };
+    # Enable "Silent boot"
+    consoleLogLevel = 3;
+    initrd.systemd.enable = true;
+    initrd.verbose = false;
+    kernelParams = [
+      "boot.shell_on_fail"
+      "quiet"
+      "splash"
+      "udev.log_level=3"
+      "udev.log_priority=3"
+      "systemd.show_status=false"
+      "vga=current"
+    ];
+
+    loader = {
+      # Hide the OS choice for bootloaders.
+      # It's still possible to open the bootloader list by pressing any key
+      # It will just not appear on screen unless a key is pressed
+      timeout = 0;
+      systemd-boot.enable = true;
+
+      grub = {
+        enable = false;
+        device = "nodev";
+        useOSProber = true;
+        #efiInstallAsRemovable = true;
+        efiSupport = true;
+        timeoutStyle = "hidden";
+      };
+
+      efi.canTouchEfiVariables = true;
+      efi.efiSysMountPoint = "/boot";
     };
 
-    efi.canTouchEfiVariables = true;
-    efi.efiSysMountPoint = "/boot";
   };
 
   networking.hostName = "mizumi";
@@ -59,7 +95,7 @@
       languages = [ "eng" ];
       symbolsFile = pkgs.fetchurl {
         url = "https://raw.githubusercontent.com/Ggcpp/Dwarf/refs/heads/main/dwarf";
-	hash = "sha256-dKMX2ZHMvavx9kRXil8b/qgqpunGmBppsB7lf6KLzCY=";
+        hash = "sha256-dKMX2ZHMvavx9kRXil8b/qgqpunGmBppsB7lf6KLzCY=";
       };
     };
   };
@@ -74,22 +110,22 @@
         # Maps capslock to escape when pressed and control when held.
         # capslock = overload(control, esc)
         capslock = overload(ctrl_vim, esc)
-        
+
         # Remaps the escape key to capslock
         esc = capslock
-        
+
         rightalt = overload(alt, enter)
         tab = backspace
-        
+
         backspace = capslock
-        
+
         [ctrl_vim:C]
-        
+
         l = tab
-        
+
         # Should be outside of terminal
         m = C-backspace
-    '';
+      '';
     };
   };
 
@@ -159,16 +195,24 @@
 
   programs.gamemode.enable = true;
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.daremo = {
     isNormalUser = true;
     description = "daremo";
     # kvm and adbusers are for hardware acceleration (see the android studio guide)
-    extraGroups = [ "networkmanager" "wheel" "kvm" "adbusers" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "kvm"
+      "adbusers"
+    ];
     shell = pkgs.zsh;
-    packages = with pkgs; [];
+    packages = with pkgs; [ ];
   };
 
   home-manager = {
@@ -189,7 +233,6 @@
     android_sdk.accept_license = true;
     allowUnfree = true;
   };
-
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

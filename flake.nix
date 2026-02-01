@@ -8,20 +8,21 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    import-tree.url = "github:vic/import-tree";
   };
 
-  outputs = { nixpkgs, ... } @ inputs:
-  {
+  outputs =
+    { nixpkgs, ... }@inputs:
+    {
+      nixosConfigurations.mizumi = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
+        modules = [
+          ./configuration.nix
+        ];
 
-    nixosConfigurations.mizumi = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = { inherit inputs; };
-      modules = [
-        ./configuration.nix
-	inputs.home-manager.nixosModules.default
-      ];
-
+      };
     };
-
-  };
 }
