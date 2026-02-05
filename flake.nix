@@ -14,15 +14,22 @@
   };
 
   outputs =
-    { nixpkgs, ... }@inputs:
-    {
-      nixosConfigurations.mizumi = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = { inherit inputs; };
-        modules = [
-          ./configuration.nix
-        ];
+    inputs:
+    inputs.flake-parts.lib.mkFlake { inherit inputs; }
+      # recursively imports modules
+      (inputs.import-tree ./modules);
 
-      };
-    };
+
+  #outputs =
+  #  { nixpkgs, ... }@inputs:
+  #  {
+  #    nixosConfigurations.mizumi = nixpkgs.lib.nixosSystem {
+  #      system = "x86_64-linux";
+  #      specialArgs = { inherit inputs; };
+  #      modules = [
+  #        ./configuration.nix
+  #      ];
+
+  #    };
+  #  };
 }
