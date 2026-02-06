@@ -17,6 +17,9 @@ ShellRoot {
 	//onReleased: ...
     }
 
+    // Background
+    Background {}
+
     // Exclusion zone windows
     PanelWindow {
         color: "transparent"
