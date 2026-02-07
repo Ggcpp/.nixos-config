@@ -1,32 +1,45 @@
 {
-  flake.modules.homeManager.zsh =
-    { config, pkgs, ... }:
+  flake.modules.nixos.zsh =
     {
-      programs.zsh = {
-        enable = true;
-        dotDir = config.home.homeDirectory + "/.config/zsh";
-        enableCompletion = true;
+      pkgs,
+      username,
+      ...
+    }:
+    {
+      programs.zsh.enable = true;
+      users.users."${username}".shell = pkgs.zsh;
 
-        shellAliases = {
-          vim = "nvim";
-          v = "nvim";
-        };
+      home-manager = {
+        users."${username}" =
+          { config, ... }:
+          {
+            programs.zsh = {
+              enable = true;
+              dotDir = config.home.homeDirectory + "/.config/zsh";
+              enableCompletion = true;
 
-        sessionVariables = {
-          EDITOR = "nvim";
-          VISUAL = "nvim";
-        };
+              shellAliases = {
+                vim = "nvim";
+                v = "nvim";
+              };
 
-        history = {
-          saveNoDups = true;
-          save = 10000;
-          size = 10000;
-          share = true;
-        };
+              sessionVariables = {
+                EDITOR = "nvim";
+                VISUAL = "nvim";
+              };
 
-        initContent = ''
-          bindkey '^H' backward-kill-word
-        '';
+              history = {
+                saveNoDups = true;
+                save = 10000;
+                size = 10000;
+                share = true;
+              };
+
+              initContent = ''
+                bindkey '^H' backward-kill-word
+              '';
+            };
+          };
       };
     };
 }

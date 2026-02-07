@@ -1,8 +1,20 @@
 {
-  flake.modules.homeManager.quickshell =
-    { config, pkgs, ... }:
+  flake.modules.nixos.quickshell =
+    { username, ... }:
     {
-      home.packages = with pkgs; [ quickshell upower ];
-      xdg.configFile."quickshell".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/modules/programs/quickshell;
+      services.upower.enable = true; # for quickshell battery info
+
+      home-manager = {
+        users."${username}" =
+          { pkgs, config, ... }:
+          {
+            home.packages = with pkgs; [
+              quickshell
+            ];
+
+            xdg.configFile."quickshell".source =
+              config.lib.file.mkOutOfStoreSymlink /etc/nixos/modules/programs/quickshell;
+          };
+      };
     };
 }

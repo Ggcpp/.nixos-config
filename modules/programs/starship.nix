@@ -1,15 +1,21 @@
 {
-  flake.modules.homeManager.starship =
-    { config, pkgs, ... }:
+  flake.modules.nixos.starship =
+    { username, ... }:
     {
-      programs.starship = {
-        enable = true;
-        settings = {
-          add_newline = false;
-          aws.disabled = true;
-          gcloud.disabled = true;
-          line_break.disabled = true;
-        };
+      home-manager = {
+        users."${username}" =
+          { config, pkgs, ... }:
+          {
+            programs.starship = {
+              enable = true;
+              settings = {
+                add_newline = false;
+                aws.disabled = true;
+                gcloud.disabled = true;
+                line_break.disabled = true;
+              };
+            };
+          };
       };
     };
 }

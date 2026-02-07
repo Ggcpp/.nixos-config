@@ -1,40 +1,40 @@
 {
-  flake.modules.homeManager.nvim =
-    { config, pkgs, ... }:
+  flake.modules.nixos.nvim =
+    { username, ... }:
     {
-      programs.neovim = {
-        enable = true;
+      # Set the default editor to nvim
+      environment.variables.EDITOR = "nvim";
 
-        #extraLuaConfig = "${builtins.readFile ./nvim/init.lua}";
-        #plugins = with pkgs.vimPlugins; [
-        #  {
-        #    plugin = nvim-lspconfig;
-        #    # type = "lua";
-        #    # config
-        #  }
-        #];
+      home-manager = {
+        users."${username}" =
+          { pkgs, config, ... }:
+          {
+            programs.neovim = {
+              enable = true;
 
-        # Maybe I don't need to add lazy-nvim through home manager and install it
-        # normally, so the nvim configs would be more cross-platform
-        plugins = with pkgs.vimPlugins; [
-          lazy-nvim
-        ];
+              # Maybe I don't need to add lazy-nvim through home manager and install it
+              # normally, so the nvim configs would be more cross-platform
+              plugins = with pkgs.vimPlugins; [
+                lazy-nvim
+              ];
 
-        extraPackages = with pkgs; [
-          wl-clipboard
+              extraPackages = with pkgs; [
+                wl-clipboard
 
-          # LSPs
-          rust-analyzer
-          typescript-language-server
-          nixd
-          nil
+                # LSPs
+                rust-analyzer
+                typescript-language-server
+                nixd
+                nil
 
-          # required by treesitter.nvim
-          tree-sitter
-          gcc
-        ];
+                # required by treesitter.nvim
+                tree-sitter
+                gcc
+              ];
+            };
+
+            xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/modules/programs/nvim;
+          };
       };
-
-      xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/modules/programs/nvim;
     };
 }

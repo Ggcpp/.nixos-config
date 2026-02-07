@@ -1,26 +1,36 @@
 { self, ... }:
 
 {
-  flake.modules.homeManager.hypr =
-    { config, pkgs, ... }:
+  flake.modules.nixos.hypr =
+    {
+      username,
+      ...
+    }:
     {
       imports = [
-        self.modules.homeManager.quickshell
+        self.modules.nixos.quickshell
       ];
-      #programs.hyprland = {
-      #    enable = true;
-      #    xwayland.enable = true;
-      #};
 
-      xdg.configFile."hypr".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/modules/programs/hypr;
+      programs.hyprland = {
+        enable = true;
+        xwayland.enable = true;
+      };
 
-      home.packages = with pkgs; [
-        hyprsunset
-        hyprcursor
-        wofi
-        kitty
-        brightnessctl
-        apple-cursor
-      ];
+      home-manager = {
+        users."${username}" =
+          { pkgs, config, ... }:
+          {
+            home.packages = with pkgs; [
+              hyprsunset
+              hyprcursor
+              wofi
+              kitty
+              brightnessctl
+              apple-cursor
+            ];
+
+            xdg.configFile."hypr".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/modules/programs/hypr;
+          };
+      };
     };
 }
