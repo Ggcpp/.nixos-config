@@ -4,7 +4,8 @@
 #{ config, lib, pkgs, modulesPath, ... }:
 
 {
-  flake.nixosModules.swift3 =
+  #flake.nixosModules.swift3 =
+  flake.modules.nixos.swift3 =
     {
       config,
       lib,
