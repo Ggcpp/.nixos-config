@@ -42,6 +42,10 @@
 
       # Enable networking
       networking.networkmanager.enable = true;
+      systemd.services.NetworkManager-wait-online.enable = false;
+
+      # Disabling dhcpcd since networkmanager uses its own dhcp
+      networking.dhcpcd.enable = false;
 
       # Set your time zone.
       time.timeZone = "Europe/Zurich";
