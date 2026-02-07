@@ -3,7 +3,7 @@
 {
   flake.modules.nixos.daremo =
     let
-      programs = with self.modules.nixos; [
+      programModules = with self.modules.nixos; [
         hypr
         zsh
         nvim
@@ -22,7 +22,7 @@
       imports = [
         inputs.home-manager.nixosModules.home-manager
       ]
-      ++ programs;
+      ++ programModules;
 
       # Bootloader.
       boot.loader = {
