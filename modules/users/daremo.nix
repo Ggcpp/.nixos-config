@@ -4,18 +4,13 @@
   flake.modules.nixos.daremo =
     let
       bundleModules = [
-        # "base-system"
+        "base-system"
       ];
 
       programModules = [
         "hypr"
-        "zsh"
-        "nvim"
-        "tmux"
         "quickshell"
-        "keyd"
         "plymouth"
-        "pipewire"
         "chromium"
         "steam"
         "starship"
@@ -44,13 +39,6 @@
         efi.canTouchEfiVariables = true;
         efi.efiSysMountPoint = "/boot";
       };
-
-      # Enable networking
-      networking.networkmanager.enable = true;
-      systemd.services.NetworkManager-wait-online.enable = false;
-
-      # Disabling dhcpcd since networkmanager uses its own dhcp
-      networking.dhcpcd.enable = false;
 
       # Set your time zone.
       time.timeZone = "Europe/Zurich";
@@ -101,12 +89,11 @@
       };
 
       # Define a user account. Don't forget to set a password with ‘passwd’.
-      users.users.daremo = {
+      users.users."${username}" = {
         isNormalUser = true;
-        description = "daremo";
+        description = username;
         # kvm and adbusers are for hardware acceleration (see the android studio guide)
         extraGroups = [
-          "networkmanager"
           "wheel"
           "kvm"
           "adbusers"
