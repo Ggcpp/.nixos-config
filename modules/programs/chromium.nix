@@ -1,7 +1,7 @@
 { self, inputs, ... }:
 
 {
-  flake.modules.nixos.chromium =
+  flake.modules.nixos."programs/chromium" =
     { pkgs, username, ... }:
     {
       home-manager = {

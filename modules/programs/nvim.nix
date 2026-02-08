@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.nvim =
+  flake.modules.nixos."programs/nvim" =
     { username, ... }:
     {
       # Set the default editor to nvim

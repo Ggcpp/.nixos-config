@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.starship =
+  flake.modules.nixos."programs/starship" =
     { username, ... }:
     {
       home-manager = {

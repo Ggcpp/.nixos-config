@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.tmux =
+  flake.modules.nixos."programs/tmux" =
     { username, ... }:
     {
       home-manager = {

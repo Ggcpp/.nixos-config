@@ -1,7 +1,7 @@
 { self, inputs, ... }:
 
 {
-  flake.modules.nixos.plymouth =
+  flake.modules.nixos."programs/plymouth" =
     { pkgs, username, ... }:
     {
       boot = {

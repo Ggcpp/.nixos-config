@@ -1,7 +1,7 @@
 { self, inputs, ... }:
 
 {
-  flake.modules.nixos.pipewire = {
+  flake.modules.nixos."programs/pipewire" = {
     # Enable sound with pipewire
     services.pulseaudio.enable = false;
     security.rtkit.enable = true;

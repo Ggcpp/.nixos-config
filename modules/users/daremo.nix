@@ -3,18 +3,22 @@
 {
   flake.modules.nixos.daremo =
     let
-      programModules = with self.modules.nixos; [
-        hypr
-        zsh
-        nvim
-        tmux
-        quickshell
-        keyd
-        plymouth
-        pipewire
-        chromium
-        steam
-        starship
+      bundleModules = [
+        # "base-system"
+      ];
+
+      programModules = [
+        "hypr"
+        "zsh"
+        "nvim"
+        "tmux"
+        "quickshell"
+        "keyd"
+        "plymouth"
+        "pipewire"
+        "chromium"
+        "steam"
+        "starship"
       ];
     in
     { pkgs, username, ... }:
@@ -22,7 +26,8 @@
       imports = [
         inputs.home-manager.nixosModules.home-manager
       ]
-      ++ programModules;
+      ++ map (programName: self.modules.nixos."programs/${programName}") programModules
+      ++ map (bundleName: self.modules.nixos."bundles/${bundleName}") bundleModules;
 
       # Bootloader.
       boot.loader = {

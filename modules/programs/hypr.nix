@@ -1,14 +1,14 @@
 { self, ... }:
 
 {
-  flake.modules.nixos.hypr =
+  flake.modules.nixos."programs/hypr" =
     {
       username,
       ...
     }:
     {
       imports = [
-        self.modules.nixos.quickshell
+        self.modules.nixos."programs/quickshell"
       ];
 
       programs.hyprland = {

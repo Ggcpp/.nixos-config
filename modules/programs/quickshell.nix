@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.quickshell =
+  flake.modules.nixos."programs/quickshell" =
     { username, ... }:
     {
       services.upower.enable = true; # for quickshell battery info
