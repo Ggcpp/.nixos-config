@@ -9,4 +9,4 @@
 > This repo is intended for personal use only, there is no guarantee that the installation process will work
 > on untested hardwares and configurations.
 
-...
+Run `nix run github:ggcpp/.nixos-config#install`
