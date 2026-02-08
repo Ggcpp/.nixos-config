@@ -11,7 +11,7 @@
       # Disabling dhcpcd since networkmanager uses its own dhcp
       networking.dhcpcd.enable = false;
 
-      # add user to networkmanager group
+      # Add user to networkmanager group
       users.users."${username}".extraGroups = [ "networkmanager" ];
     };
 }

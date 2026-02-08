@@ -49,29 +49,6 @@
         "flakes"
       ];
 
-      # List packages installed in system profile. To search, run:
-      # $ nix search wget
-      environment.systemPackages = with pkgs; [
-        wget
-        git
-        keyd
-        pavucontrol
-        tree
-        fh
-        unzip
-        htop
-        blender
-        ncdu
-        lutris
-        wine
-        winetricks
-        feh
-        vlc
-        nodejs
-        anki-bin
-        foot
-      ];
-
       # Some programs need SUID wrappers, can be configured further or are
       # started in user sessions.
       # programs.mtr.enable = true;

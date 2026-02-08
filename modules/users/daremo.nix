@@ -2,6 +2,7 @@
 
 {
   flake.modules.nixos.daremo =
+    { pkgs, username, ... }:
     let
       bundleModules = [
         "base-system"
@@ -15,8 +16,27 @@
         "steam"
         "starship"
       ];
+
+      extraPrograms = with pkgs; [
+        wget
+        git
+        pavucontrol
+        tree
+        fh
+        unzip
+        htop
+        blender
+        ncdu
+        lutris
+        wine
+        winetricks
+        feh
+        vlc
+        nodejs
+        anki-bin
+        foot
+      ];
     in
-    { pkgs, username, ... }:
     {
       imports = [
         inputs.home-manager.nixosModules.home-manager
@@ -111,6 +131,10 @@
       # networking.firewall.allowedUDPPorts = [ ... ];
       # Or disable the firewall altogether.
       networking.firewall.enable = false;
+
+      # List packages installed in system profile. To search, run:
+      # $ nix search wget
+      environment.systemPackages = extraPrograms;
 
       # Configure Home Manager
       home-manager = {

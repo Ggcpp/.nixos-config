@@ -7,6 +7,6 @@
 
 > [!WARNING]
 > This repo is intended for personal use only, there is no guarantee that the installation process will work
-> for untested hardwares and configurations.
+> on untested hardwares and configurations.
 
 ...
