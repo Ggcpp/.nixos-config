@@ -10,4 +10,6 @@ PanelWindow {
     anchors.bottom: true
     anchors.left: true
     anchors.right: true
+
+    Wallpaper {}
 }
