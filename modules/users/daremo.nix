@@ -119,7 +119,7 @@
           home.username = username;
           home.homeDirectory = "/home/${username}";
 
-          home.packages = extraPackages;
+          home.packages = [ self.packages.${pkgs.stdenv.hostPlatform.system}.install ] ++ extraPackages;
 
           # This value determines the Home Manager release that your
           # configuration is compatible with. This helps avoid breakage

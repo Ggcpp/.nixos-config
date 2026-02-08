@@ -7,7 +7,7 @@
 
 {
   perSystem =
-    { pkgs, ... }:
+    { pkgs, system, ... }:
     let
       moduleNames = builtins.toJSON (builtins.attrNames config.flake.modules.nixos);
     in
@@ -23,6 +23,7 @@
             import questionary
 
             module_list = json.loads('${moduleNames}')
+            print("running on ${system} system")
 
             def main():
                 print("--- Flake Modules Analyzer ---")
