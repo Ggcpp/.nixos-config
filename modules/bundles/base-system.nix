@@ -3,16 +3,18 @@
 {
   flake.modules.nixos."bundles/base-system" =
     let
-      programModules = [
+      packageModules = [
         "networkmanager"
         "pipewire"
         "keyd"
+        "dwarf"
         "zsh"
+        "fonts"
         "nvim"
         "tmux"
       ];
     in
     {
-      imports = map (programName: self.modules.nixos."programs/${programName}") programModules;
+      imports = map (packageName: self.modules.nixos."packages/${packageName}") packageModules;
     };
 }

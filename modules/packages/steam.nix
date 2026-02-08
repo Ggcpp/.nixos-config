@@ -1,7 +1,7 @@
 { self, inputs, ... }:
 
 {
-  flake.modules.nixos."programs/steam" = {
+  flake.modules.nixos."packages/steam" = {
     programs.steam = {
       enable = true;
       gamescopeSession.enable = true;

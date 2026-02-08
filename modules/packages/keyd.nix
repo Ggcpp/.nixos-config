@@ -1,7 +1,7 @@
 { self, ... }:
 
 {
-  flake.modules.nixos."programs/keyd" = {
+  flake.modules.nixos."packages/keyd" = {
     services.keyd = {
       enable = true;
       keyboards.default = {

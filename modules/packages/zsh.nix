@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos."programs/zsh" =
+  flake.modules.nixos."packages/zsh" =
     {
       pkgs,
       username,

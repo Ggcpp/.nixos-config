@@ -8,7 +8,7 @@
         "base-system"
       ];
 
-      programModules = [
+      packageModules = [
         "hypr"
         "quickshell"
         "plymouth"
@@ -17,7 +17,7 @@
         "starship"
       ];
 
-      extraPrograms = with pkgs; [
+      extraPackages = with pkgs; [
         wget
         git
         pavucontrol
@@ -41,7 +41,7 @@
       imports = [
         inputs.home-manager.nixosModules.home-manager
       ]
-      ++ map (programName: self.modules.nixos."programs/${programName}") programModules
+      ++ map (packageName: self.modules.nixos."packages/${packageName}") packageModules
       ++ map (bundleName: self.modules.nixos."bundles/${bundleName}") bundleModules;
 
       # Bootloader.
@@ -66,42 +66,12 @@
       # Select internationalisation properties.
       i18n.defaultLocale = "en_US.UTF-8";
 
-      # Configure keymap in X11
-      services.xserver.xkb = {
-        layout = "dwarf";
-        variant = "";
-
-        extraLayouts.dwarf = {
-          description = "Dwarf keyboard layout";
-          languages = [ "eng" ];
-          symbolsFile = pkgs.fetchurl {
-            url = "https://raw.githubusercontent.com/Ggcpp/Dwarf/refs/heads/main/dwarf";
-            hash = "sha256-dKMX2ZHMvavx9kRXil8b/qgqpunGmBppsB7lf6KLzCY=";
-          };
-        };
-      };
-
-      # Apply system keymap to decrypt/login on boot
-      console = {
-        earlySetup = true;
-        useXkbConfig = true;
-      };
-
-      # Fonts
-      fonts.packages = with pkgs; [
-        nerd-fonts.jetbrains-mono
-        nerd-fonts.iosevka
-        noto-fonts
-        noto-fonts-cjk-sans
-        noto-fonts-color-emoji
-      ];
-
       # Prevent screen flickering in some apps when using NVIDIA cards
       # Note: Wayland specific
-      environment.sessionVariables = {
-        WLR_NO_HARDWARE_CURSORS = "1";
-        NIXOS_OZONE_WL = "1";
-      };
+      #environment.sessionVariables = {
+      #  WLR_NO_HARDWARE_CURSORS = "1";
+      #  NIXOS_OZONE_WL = "1";
+      #};
 
       # Enable hardware acceleration
       hardware = {
@@ -134,7 +104,7 @@
 
       # List packages installed in system profile. To search, run:
       # $ nix search wget
-      environment.systemPackages = extraPrograms;
+      # environment.systemPackages = [];
 
       # Configure Home Manager
       home-manager = {
@@ -148,6 +118,8 @@
           # paths it should manage.
           home.username = username;
           home.homeDirectory = "/home/${username}";
+
+          home.packages = extraPackages;
 
           # This value determines the Home Manager release that your
           # configuration is compatible with. This helps avoid breakage

@@ -1,7 +1,7 @@
 { self, ... }:
 
 {
-  flake.modules.nixos."programs/networkmanager" =
+  flake.modules.nixos."packages/networkmanager" =
     { username, ... }:
     {
       # Enable networking
