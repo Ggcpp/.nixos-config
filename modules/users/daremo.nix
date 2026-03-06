@@ -15,6 +15,7 @@
         "chromium"
         "steam"
         "starship"
+        "nextdns"
       ];
 
       extraPackages = with pkgs; [

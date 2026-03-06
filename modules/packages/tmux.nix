@@ -129,6 +129,9 @@
                 # Automatically renumber windows
                 set -g renumber-windows on
 
+                # Map ctrl+backspace to ctrl+w
+                bind-key -n C-h send-keys C-w
+
                 # Stylizing status bar
                 set -g focus-events on
                 set -g status-position top
