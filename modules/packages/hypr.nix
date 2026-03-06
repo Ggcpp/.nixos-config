@@ -9,6 +9,7 @@
     {
       imports = [
         self.modules.nixos."packages/quickshell"
+        self.modules.nixos."packages/kitty"
       ];
 
       programs.hyprland = {
@@ -24,7 +25,6 @@
               hyprsunset
               hyprcursor
               wofi
-              kitty
               brightnessctl
               apple-cursor
             ];
