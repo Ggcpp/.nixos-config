@@ -29,7 +29,7 @@
               apple-cursor
             ];
 
-            xdg.configFile."hypr".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/dotfiles/hypr;
+            xdg.configFile."hypr".source = config.lib.file.mkOutOfStoreSymlink ./config;
           };
       };
     };

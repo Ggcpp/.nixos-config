@@ -13,7 +13,7 @@
             ];
 
             xdg.configFile."quickshell".source =
-              config.lib.file.mkOutOfStoreSymlink /etc/nixos/dotfiles/quickshell;
+              config.lib.file.mkOutOfStoreSymlink ./config;
           };
       };
     };
