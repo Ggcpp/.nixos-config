@@ -15,7 +15,8 @@
         "chromium"
         "steam"
         "starship"
-        "nextdns"
+        #"nextdns"
+        "virt-manager"
       ];
 
       extraPackages = with pkgs; [
@@ -29,8 +30,6 @@
         blender
         ncdu
         lutris
-        wine
-        winetricks
         feh
         vlc
         nodejs
@@ -66,6 +65,10 @@
 
       # Select internationalisation properties.
       i18n.defaultLocale = "en_US.UTF-8";
+      i18n.supportedLocales = [
+        "en_US.UTF-8/UTF-8"
+        "ja_JP.UTF-8/UTF-8"
+      ];
 
       # Prevent screen flickering in some apps when using NVIDIA cards
       # Note: Wayland specific

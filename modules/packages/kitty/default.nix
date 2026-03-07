@@ -13,7 +13,8 @@
               kitty
             ];
 
-            xdg.configFile."kitty".source = config.lib.file.mkOutOfStoreSymlink ./config;
+            xdg.configFile."kitty".source =
+              config.lib.file.mkOutOfStoreSymlink "/etc/nixos/modules/packages/kitty/config";
           };
       };
     };

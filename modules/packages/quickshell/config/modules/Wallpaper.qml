@@ -5,7 +5,7 @@ Item {
     anchors.fill: parent
 
     Image {
-        property string path: "/etc/nixos/dotfiles/hypr/wallpaper.jpg"
+        property string path: "/etc/nixos/modules/packages/hypr/config/wallpaper.jpg"
 
         anchors.fill: parent
 

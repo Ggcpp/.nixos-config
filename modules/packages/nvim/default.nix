@@ -33,7 +33,8 @@
               ];
             };
 
-            xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink ./config;
+            xdg.configFile."nvim".source =
+              config.lib.file.mkOutOfStoreSymlink "/etc/nixos/modules/packages/nvim/config";
           };
       };
     };
